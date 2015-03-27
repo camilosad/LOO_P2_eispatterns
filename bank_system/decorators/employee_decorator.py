@@ -7,11 +7,11 @@ from domain.supportive.association_error import AssociationError
 
 
 class EmployeeDecorator(Decorator):
-    '''A general purpose Employee decorator'''
+    '''A employee'''
     decoration_rules = ['should_be_instance_of_person']
-    def __init__(self):
+    def __init__(self, name):
         Decorator.__init__(self)
-        self.description = "Supplies the basis for representing employes"
+        self.name = name
 
     def generate_register(self, register):
         ''' generates the register number for the employee '''

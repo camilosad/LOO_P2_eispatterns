@@ -29,11 +29,11 @@ class LocadoraRuleBase(CoreRules):
         else: return True
 
     @rule('association')
-    def should_have_client_decorator(self, associated):
-        '''Associated object should be previously decorated by Client'''
-        from locadora.decorators.client_decorator import ClienteDecorator
+    def should_have_employee_decorator(self, associated):
+        '''Associated object should be previously decorated by Employee'''
+        from locadora.decorators.employee_decorator import EmployeeDecorator
         import domain.supportive.contract_matchers
-        try: associated |should| be_decorated_by(ClienteDecorator)
+        try: associated |should| be_decorated_by(EmployeeDecorator)
         except ShouldNotSatisfied: return False
         else: return True
 

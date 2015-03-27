@@ -21,9 +21,9 @@ class BankAccountDecoratorSpec(unittest.TestCase):
         decorate, _, _ = self.a_bank_account_decorator.decorate('I am not a machine')
         decorate |should| equal_to(False)
 
-    def it_registers_a_credit(self):
+    def it_registers_a_rent(self):
         self.a_bank_account_decorator.balance = 100
-        self.a_bank_account_decorator.register_credit(50)
+        self.a_bank_account_decorator.register_rent(50)
         self.a_bank_account_decorator.balance |should| equal_to(150)
 
     def it_sends_a_message_to_the_account_holder(self):
