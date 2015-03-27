@@ -5,17 +5,17 @@ from domain.resource.operation import operation
 from domain.supportive.association_error import AssociationError
 
 
-class BankAccountDecorator(Decorator):
-    '''Bank Account'''
+class MovieDecorator(Decorator):
+    '''Movie'''
     decoration_rules = ['should_be_instance_of_machine']
 
-    def __init__(self, number):
+    def __init__(self, name):
         Decorator.__init__(self)
-        self.description = "A bank account"
+        self.description = "A movie"
         #log area for already processed resources
         self.log_area = {}
-        #should it mask Machine.tag? decorated.tag = number?
-        self.number = number
+        #should it mask Machine.tag? decorated.tag = name?
+        self.name = name
         self.balance = 0
         self.restricted = False
         self.average_credit = 0
