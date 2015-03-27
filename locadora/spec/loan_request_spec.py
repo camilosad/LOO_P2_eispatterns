@@ -1,22 +1,22 @@
 import unittest
 from should_dsl import should, should_not
 from domain.supportive.association_error import AssociationError
-from locadora.resources.loan_request import LoanRequest
-from locadora.decorators.bank_account_decorator import BankAccountDecorator
-from locadora.decorators.credit_analyst_decorator import CreditAnalystDecorator
-from locadora.rules.locadora_rule_base import BankSystemRuleBase
+from locadora.resources.rent_request import RentRequest
+from locadora.decorators.movie_decorator import MovieDecorator
+from locadora.decorators.rent_analyst_decorator import RentAnalystDecorator
+from locadora.rules.locadora_rule_base import LocadoraRuleBase
 from domain.supportive.rule_manager import RuleManager
 
 
-class LoanRequestSpec(unittest.TestCase):
+class RentRequestSpec(unittest.TestCase):
 
-    def it_check_associations_with_bank_account_and_credit_analyst(self):
+    def it_check_associations_with_movie_and_rent_analyst(self):
         #set the rule base
-        RuleManager.rule_base = BankSystemRuleBase()
+        RuleManager.rule_base = LocadoraRuleBase()
         #
-        an_account = BankAccountDecorator('12345-6')
-        an_analyst = CreditAnalystDecorator('abcde-f')
-        (LoanRequest, 'I am not an account', 123, an_analyst) |should| throw(AssociationError)
-        (LoanRequest, an_account, 123, 'I am not an analyst') |should| throw(AssociationError)
-        (LoanRequest, an_account, 123, an_analyst) |should_not| throw(AssociationError)
+        a_movie = MovieDecorator('12345-6')
+        an_analyst = RentAnalystDecorator('abcde-f')
+        (RentRequest, 'I am not an movie', 123, an_analyst) |should| throw(AssociationError)
+        (RentRequest, a_movie, 123, 'I am not an analyst') |should| throw(AssociationError)
+        (RentRequest, a_movie, 123, an_analyst) |should_not| throw(AssociationError)
 
