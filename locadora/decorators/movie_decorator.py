@@ -16,17 +16,3 @@ class MovieDecorator(Decorator):
         self.log_area = {}
         #should it mask Machine.tag? decorated.tag = name?
         self.name = name
-        self.balance = 0
-        self.restricted = False
-        self.average_credit = 0
-
-    @operation(category='business')
-    def register_credit(self, value):
-        ''' Register a credit in the balance '''
-        self.balance += value
-
-    @operation(category='business')
-    def send_message_to_account_holder(self, message):
-        ''' Sends a message to the account holder '''
-        return message
-
