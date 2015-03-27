@@ -12,8 +12,8 @@ from locadora.decorators.movie_decorator import MovieDecorator
 from locadora.decorators.employee_decorator import EmployeeDecorator
 
 
-class AttendantDecorator(Decorator):
-    '''Attendant'''
+class RentAnalystDecorator(Decorator):
+    '''RentAnalyst'''
     decoration_rules = ['should_have_employee_decorator']
 
     def __init__(self, register):
