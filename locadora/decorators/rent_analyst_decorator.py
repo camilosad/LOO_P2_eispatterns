@@ -12,24 +12,24 @@ from locadora.decorators.movie_decorator import MovieDecorator
 from locadora.decorators.employee_decorator import EmployeeDecorator
 
 
-class AttendantDecorator(Decorator):
-    '''Attendant'''
+class RentAnalystDecorator(Decorator):
+    '''RentAnalyst'''
     decoration_rules = ['should_have_employee_decorator']
 
     def __init__(self, register):
         Decorator.__init__(self)
-        self.description = "An employee with credit analysis skills"
+        self.description = "An employee with rent analysis skills"
         self.register = register
         self.rent_limit = 0
 
     @operation(category='business')
-    def create_rent_request(self, account, value):
+    def create_rent_request(self, movie, value):
         ''' creates a rent request '''
-        rent_request = RentRequest(account, value, self)
+        rent_request = RentRequest(movie, value, self)
         #places the rent_request in the node's input area
-        self.decorated.input_area[rent_request.account.number] = rent_request
+        self.decorated.input_area[rent_request.movie.number] = rent_request
 
-    #stupid credit analysis, only for demonstration
+    #stupid rent analysis, only for demonstration
     @operation(category='business')
     def analyse(self, rent_request_key):
         ''' automatically analyses a rent request '''
@@ -39,8 +39,8 @@ class AttendantDecorator(Decorator):
         #picks the rent for processing
         rent_request = self.decorated.processing_area[rent_request_key]
         #automatically approves or not
-        if not rent_request.account.restricted:
-           if rent_request.account.average_credit*4 > rent_request.value:
+        if not rent_request.movie.restricted:
+           if rent_request.movie.average_rent*4 > rent_request.value:
                rent_request.approved = True
            else:
                rent_request.approved = False
@@ -57,8 +57,8 @@ class AttendantDecorator(Decorator):
         self.decorated.output_area[rent.rent_request.analyst.register] = rent
 
     @operation(category='business')
-    def move_rent_to_account(self, rent_key, account):
-        ''' moves the approved rent to the account '''
+    def move_rent_to_movie(self, rent_key, movie):
+        ''' moves the approved rent to the movie '''
         try:
             rent = self.decorated.output_area[rent_key]
             rent |should| be_instance_of(Rent)
@@ -67,10 +67,10 @@ class AttendantDecorator(Decorator):
         except ShouldNotSatisfied:
             raise ContractError('Rent instance expected, instead %s passed' % type(rent))
         try:
-            Node.move_resource(rent_key, self.decorated, account.decorated)
+            Node.move_resource(rent_key, self.decorated, movie.decorated)
         except ShouldNotSatisfied:
-            raise ContractError('Bank Account instance expected, instead %s passed' % type(account))
-        account.register_credit(rent.rent_request.value)
+            raise ContractError('Bank Account instance expected, instead %s passed' % type(movie))
+        movie.register_rent(rent.rent_request.value)
 
     def change_rent_limit(self, new_limit):
         self.rent_limit = new_limit
