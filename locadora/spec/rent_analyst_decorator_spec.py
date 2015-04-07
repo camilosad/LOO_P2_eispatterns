@@ -1,16 +1,16 @@
 import unittest
 from should_dsl import should, should_not
-from domain.node.person import Person
-from domain.node.machine import Machine
-from domain.supportive.association_error import AssociationError
-from domain.supportive.contract_error import ContractError
+from eispatterns.domain.node.person import Person
+from eispatterns.domain.node.machine import Machine
+from eispatterns.domain.supportive.association_error import AssociationError
+from eispatterns.domain.supportive.contract_error import ContractError
 from locadora.resources.rent_request import RentRequest
 from locadora.resources.rent import Rent
 from locadora.decorators.rent_analyst_decorator import RentAnalystDecorator
 from locadora.decorators.movie_decorator import MovieDecorator
 from locadora.decorators.employee_decorator import EmployeeDecorator
 from locadora.rules.locadora_rule_base import LocadoraRuleBase
-from domain.supportive.rule_manager import RuleManager
+from eispatterns.domain.supportive.rule_manager import RuleManager
 
 
 class RentAnalystDecoratorSpec(unittest.TestCase):

@@ -1,11 +1,11 @@
 import unittest
 from should_dsl import should, should_not
-from domain.supportive.association_error import AssociationError
+from eispatterns.domain.supportive.association_error import AssociationError
 from locadora.resources.rent_request import RentRequest
 from locadora.decorators.movie_decorator import MovieDecorator
 from locadora.decorators.rent_analyst_decorator import RentAnalystDecorator
 from locadora.rules.locadora_rule_base import LocadoraRuleBase
-from domain.supportive.rule_manager import RuleManager
+from eispatterns.domain.supportive.rule_manager import RuleManager
 
 
 class RentRequestSpec(unittest.TestCase):

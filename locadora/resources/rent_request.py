@@ -1,8 +1,8 @@
 from datetime import datetime
 from should_dsl import should, ShouldNotSatisfied
-from domain.supportive.association_error import AssociationError
-from domain.resource.work_item import WorkItem
-from domain.supportive.rule_manager import RuleManager
+from eispatterns.domain.supportive.association_error import AssociationError
+from eispatterns.domain.resource.work_item import WorkItem
+from eispatterns.domain.supportive.rule_manager import RuleManager
 
 
 class RentRequest(WorkItem):
@@ -17,6 +17,6 @@ class RentRequest(WorkItem):
         if not RuleManager.get_instance().check_rule('should_be_instance_of_rent_analyst', analyst):
             raise AssociationError('Rent Analyst instance expected, instead %s passed' % type(analyst))
         self.analyst = analyst
-        if not RuleManager.get_instance().check_rule('should_be_instance_of_employee', employee):
-            raise AssociationError('Employee instance expected, instead %s passed' % type(employee))
+        # if not RuleManager.get_instance().check_rule('should_be_instance_of_employee', employee):
+        #     raise AssociationError('Employee instance expected, instead %s passed' % type(employee))
         self.employee = employee

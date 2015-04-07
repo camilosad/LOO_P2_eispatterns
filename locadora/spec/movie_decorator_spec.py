@@ -1,8 +1,8 @@
 import unittest
 from should_dsl import should, should_not
-from domain.node.machine import Machine
+from eispatterns.domain.node.machine import Machine
 from locadora.decorators.movie_decorator import MovieDecorator
-from domain.supportive.association_error import AssociationError
+from eispatterns.domain.supportive.association_error import AssociationError
 
 
 class MovieDecoratorSpec(unittest.TestCase):

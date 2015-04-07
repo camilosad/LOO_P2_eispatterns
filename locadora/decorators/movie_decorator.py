@@ -1,9 +1,8 @@
 from should_dsl import should, ShouldNotSatisfied
-from domain.base.decorator import Decorator
-from domain.node.machine import Machine
-from domain.resource.operation import operation
-from domain.supportive.association_error import AssociationError
-
+from eispatterns.domain.base.decorator import Decorator
+from eispatterns.domain.node.machine import Machine
+from eispatterns.domain.resource.operation import operation
+from eispatterns.domain.supportive.association_error import AssociationError
 
 class MovieDecorator(Decorator):
     '''Movie'''
@@ -13,8 +12,9 @@ class MovieDecorator(Decorator):
         Decorator.__init__(self)
         self.description = "A movie"
         self.name = name
-	    self.restricted = False
+        self.restricted = False
 
     @operation(category='business')
-    def register_credit(self):
-	    self.restricted = True
+    def register_movie_rent(self):
+        ''' Atualiza status do filme para indisponivel '''
+        self.restricted = True

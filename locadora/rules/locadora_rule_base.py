@@ -1,6 +1,6 @@
 from should_dsl import should, ShouldNotSatisfied
-from domain.supportive.rule import rule
-from domain.supportive.core_rules import CoreRules
+from eispatterns.domain.supportive.rule import rule
+from eispatterns.domain.supportive.core_rules import CoreRules
 
 
 class LocadoraRuleBase(CoreRules):
@@ -32,7 +32,7 @@ class LocadoraRuleBase(CoreRules):
     def should_have_employee_decorator(self, associated):
         '''Associated object should be previously decorated by Employee'''
         from locadora.decorators.employee_decorator import EmployeeDecorator
-        import domain.supportive.contract_matchers
+        import eispatterns.domain.supportive.contract_matchers
         try: associated |should| be_decorated_by(EmployeeDecorator)
         except ShouldNotSatisfied: return False
         else: return True

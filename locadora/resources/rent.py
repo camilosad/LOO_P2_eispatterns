@@ -1,10 +1,10 @@
 from datetime import datetime
 from should_dsl import should, ShouldNotSatisfied
-from domain.supportive.association_error import AssociationError
-from domain.supportive.rule import rule
-from domain.resource.work_item import WorkItem
+from eispatterns.domain.supportive.association_error import AssociationError
+from eispatterns.domain.supportive.rule import rule
+from eispatterns.domain.resource.work_item import WorkItem
 from locadora.resources.rent_request import RentRequest
-from domain.supportive.rule_manager import RuleManager
+from eispatterns.domain.supportive.rule_manager import RuleManager
 
 
 class Rent(WorkItem):

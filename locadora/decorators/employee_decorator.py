@@ -1,9 +1,9 @@
 from should_dsl import should, ShouldNotSatisfied
-from domain.base.decorator import Decorator
-from domain.node.person import Person
-from domain.resource.operation import operation
-from domain.supportive.rule import rule
-from domain.supportive.association_error import AssociationError
+from eispatterns.domain.base.decorator import Decorator
+from eispatterns.domain.node.person import Person
+from eispatterns.domain.resource.operation import operation
+from eispatterns.domain.supportive.rule import rule
+from eispatterns.domain.supportive.association_error import AssociationError
 
 
 class EmployeeDecorator(Decorator):

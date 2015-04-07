@@ -1,7 +1,7 @@
 import unittest
 from should_dsl import should
-from domain.node.person import Person
-from domain.supportive.association_error import AssociationError
+from eispatterns.domain.node.person import Person
+from eispatterns.domain.supportive.association_error import AssociationError
 from locadora.decorators.employee_decorator import EmployeeDecorator
 
 
