@@ -5,6 +5,7 @@ from locadora.resources.rent_request import RentRequest
 from locadora.resources.rent import Rent
 from locadora.decorators.rent_analyst_decorator import RentAnalystDecorator
 from locadora.decorators.movie_decorator import MovieDecorator
+from locadora.decorators.employee_decorator import EmployeeDecorator
 from locadora.rules.locadora_rule_base import LocadoraRuleBase
 from eispatterns.domain.supportive.rule_manager import RuleManager
 
@@ -17,7 +18,8 @@ class RentSpec(unittest.TestCase):
         #
         (Rent, 'I am not a rent request') |should| throw(AssociationError)
         a_rent_analyst_decorator = RentAnalystDecorator('12345-6')
-        a_movie = MovieDecorator('1234567-8')
-        a_rent_request = RentRequest(a_movie, 7000, a_rent_analyst_decorator)
+        a_movie = MovieDecorator('Winter is coming')
+        a_person = EmployeeDecorator()
+        a_rent_request = RentRequest(a_movie, a_rent_analyst_decorator, a_person)
         (Rent, a_rent_request) |should_not| throw(AssociationError)
 
