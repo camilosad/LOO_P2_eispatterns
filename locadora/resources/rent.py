@@ -15,4 +15,5 @@ class Rent(WorkItem):
            raise AssociationError('Rent Request instance expected, instead %s passed' % type(rent_request))
         self.rent_request = rent_request
         self.datetime = datetime.now()
+ 	self.rent_request.movie.register_rent()
 

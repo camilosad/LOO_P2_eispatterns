@@ -12,7 +12,9 @@ class MovieDecorator(Decorator):
     def __init__(self, name):
         Decorator.__init__(self)
         self.description = "A movie"
-        #log area for already processed resources
-        self.log_area = {}
-        #should it mask Machine.tag? decorated.tag = name?
         self.name = name
+	    self.restricted = False
+
+    @operation(category='business')
+    def register_credit(self):
+	    self.restricted = True

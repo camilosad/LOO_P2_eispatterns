@@ -6,7 +6,7 @@ from domain.supportive.rule import rule
 from domain.supportive.association_error import AssociationError
 
 
-class ClientDecorator(Decorator):
+class EmployeeDecorator(Decorator):
     '''A general purpose Employee decorator'''
     decoration_rules = ['should_be_instance_of_person']
     def __init__(self):

@@ -23,11 +23,11 @@ class RentAnalystDecorator(Decorator):
         self.rent_limit = 0
 
     @operation(category='business')
-    def create_rent_request(self, movie, value):
+    def create_rent_request(self, movie, employee):
         ''' creates a rent request '''
-        rent_request = RentRequest(movie, value, self)
+        rent_request = RentRequest(movie, self, employee)
         #places the rent_request in the node's input area
-        self.decorated.input_area[rent_request.movie.number] = rent_request
+        self.decorated.input_area[rent_request.movie.name] = rent_request
 
     #stupid rent analysis, only for demonstration
     @operation(category='business')
@@ -40,10 +40,7 @@ class RentAnalystDecorator(Decorator):
         rent_request = self.decorated.processing_area[rent_request_key]
         #automatically approves or not
         if not rent_request.movie.restricted:
-           if rent_request.movie.average_rent*4 > rent_request.value:
-               rent_request.approved = True
-           else:
-               rent_request.approved = False
+           rent_request.approved = True
         else:
            rent_request.approved = False
         #transfers the rent to the output_area
@@ -56,22 +53,4 @@ class RentAnalystDecorator(Decorator):
         #puts the new rent on the analyst's output_area, using analyst's register as key
         self.decorated.output_area[rent.rent_request.analyst.register] = rent
 
-    @operation(category='business')
-    def move_rent_to_movie(self, rent_key, movie):
-        ''' moves the approved rent to the movie '''
-        try:
-            rent = self.decorated.output_area[rent_key]
-            rent |should| be_instance_of(Rent)
-        except KeyError:
-            raise KeyError("Rent with key %s not found in Analyst's output area" % rent_key)
-        except ShouldNotSatisfied:
-            raise ContractError('Rent instance expected, instead %s passed' % type(rent))
-        try:
-            Node.move_resource(rent_key, self.decorated, movie.decorated)
-        except ShouldNotSatisfied:
-            raise ContractError('Bank Account instance expected, instead %s passed' % type(movie))
-        movie.register_rent(rent.rent_request.value)
-
-    def change_rent_limit(self, new_limit):
-        self.rent_limit = new_limit
 
