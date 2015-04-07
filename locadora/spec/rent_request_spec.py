@@ -14,9 +14,9 @@ class RentRequestSpec(unittest.TestCase):
         #set the rule base
         RuleManager.rule_base = LocadoraRuleBase()
         #
-        a_movie = MovieDecorator('12345-6')
+        a_movie = MovieDecorator('Winter is coming')
         an_analyst = RentAnalystDecorator('abcde-f')
         (RentRequest, 'I am not an movie', 123, an_analyst) |should| throw(AssociationError)
         (RentRequest, a_movie, 123, 'I am not an analyst') |should| throw(AssociationError)
-        (RentRequest, a_movie, 123, an_analyst) |should_not| throw(AssociationError)
+        (RentRequest, a_movie, an_analyst) |should_not| throw(AssociationError)
 
