@@ -20,13 +20,3 @@ class MovieDecoratorSpec(unittest.TestCase):
         #should fail
         decorate, _, _ = self.a_movie_decorator.decorate('I am not a machine')
         decorate |should| equal_to(False)
-
-    # def it_registers_a_credit(self):
-    #     self.a_movie_decorator.balance = 100
-    #     self.a_movie_decorator.register_credit(50)
-    #     self.a_movie_decorator.balance |should| equal_to(150)
-
-    # def it_sends_a_message_to_the_account_holder(self):
-    #     message = 'This is a message'
-    #     self.a_movie_decorator.send_message_to_account_holder(message) |should| equal_to(message)
-
