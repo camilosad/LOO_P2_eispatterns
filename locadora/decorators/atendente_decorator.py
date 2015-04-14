@@ -8,26 +8,25 @@ from eispatterns.domain.supportive.association_error import AssociationError
 from eispatterns.domain.supportive.contract_error import ContractError
 from locadora.resources.pedido import Pedido
 from locadora.resources.aluguel import Aluguel
-from locadora.decorators.movie_decorator import MovieDecorator
-from locadora.decorators.client_decorator import ClientDecorator
+from locadora.decorators.filme_decorator import FilmeDecorator
+from locadora.decorators.cliente_decorator import ClienteDecorator
 
 
 class AtendenteDecorator(Decorator):
     '''Atendente'''
-    decoration_rules = ['should_have_client_decorator']
+    decoration_rules = ['should_have_cliente_decorator']
 
     def __init__(self, register):
         Decorator.__init__(self)
-        self.description = "An client with aluguel analysis skills"
         self.register = register
         self.aluguel_limit = 0
 
     @operation(category='business')
-    def create_pedido(self, movie, client):
+    def create_pedido(self, filme, cliente):
         ''' creates a aluguel request '''
-        pedido = Pedido(movie, self, client)
+        pedido = Pedido(filme, self, cliente)
         #places the pedido in the node's input area
-        self.decorated.input_area[pedido.movie.name] = pedido
+        self.decorated.input_area[pedido.filme.name] = pedido
 
     #stupid aluguel analysis, only for demonstration
     @operation(category='business')
@@ -39,7 +38,7 @@ class AtendenteDecorator(Decorator):
         #picks the aluguel for processing
         pedido = self.decorated.processing_area[pedido_key]
         #automatically approves or not
-        if not pedido.movie.restricted:
+        if not pedido.filme.restricted:
            pedido.approved = True
         else:
            pedido.approved = False
@@ -50,7 +49,7 @@ class AtendenteDecorator(Decorator):
     def create_aluguel(self, pedido):
         ''' creates a aluguel '''
         aluguel = Aluguel(pedido)
-        #puts the new aluguel on the analyst's output_area, using analyst's register as key
-        self.decorated.output_area[aluguel.pedido.analyst.register] = aluguel
+        #puts the new aluguel on the atendente's output_area, using atendente's register as key
+        self.decorated.output_area[aluguel.pedido.atendente.register] = aluguel
 
 

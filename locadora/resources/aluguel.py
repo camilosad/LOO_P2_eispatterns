@@ -12,8 +12,8 @@ class Aluguel(WorkItem):
     def __init__(self, pedido):
         WorkItem.__init__(self)
         if not RuleManager.get_instance().check_rule('should_be_instance_of_pedido', pedido):
-           raise AssociationError('Aluguel Request instance expected, instead %s passed' % type(pedido))
+           raise AssociationError('Aluguel instance expected, instead %s passed' % type(pedido))
         self.pedido = pedido
         self.datetime = datetime.now()
-        self.pedido.movie.register_movie_aluguel()
+        self.pedido.filme.register_filme_aluguel()
 
