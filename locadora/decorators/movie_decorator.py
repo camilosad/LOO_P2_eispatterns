@@ -1,3 +1,4 @@
+
 from should_dsl import should, ShouldNotSatisfied
 from eispatterns.domain.base.decorator import Decorator
 from eispatterns.domain.node.machine import Machine

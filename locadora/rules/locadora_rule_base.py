@@ -13,10 +13,10 @@ class LocadoraRuleBase(CoreRules):
         else: return True
 
     @rule('association')
-    def should_be_instance_of_employee(self, associated):
+    def should_be_instance_of_client(self, associated):
         '''Associated object should be instance of Movie Decorator'''
-        from locadora.decorators.employee_decorator import EmployeeDecorator
-        try: associated |should| be_instance_of(EmployeeDecorator)
+        from locadora.decorators.client_decorator import ClientDecorator
+        try: associated |should| be_instance_of(ClientDecorator)
         except ShouldNotSatisfied: return False
         else: return True
 
@@ -37,11 +37,11 @@ class LocadoraRuleBase(CoreRules):
         else: return True
 
     @rule('association')
-    def should_have_employee_decorator(self, associated):
-        '''Associated object should be previously decorated by Employee'''
-        from locadora.decorators.employee_decorator import EmployeeDecorator
+    def should_have_client_decorator(self, associated):
+        '''Associated object should be previously decorated by Client'''
+        from locadora.decorators.client_decorator import ClientDecorator
         import eispatterns.domain.supportive.contract_matchers
-        try: associated |should| be_decorated_by(EmployeeDecorator)
+        try: associated |should| be_decorated_by(ClientDecorator)
         except ShouldNotSatisfied: return False
         else: return True
 

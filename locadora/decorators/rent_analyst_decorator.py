@@ -9,23 +9,23 @@ from eispatterns.domain.supportive.contract_error import ContractError
 from locadora.resources.rent_request import RentRequest
 from locadora.resources.rent import Rent
 from locadora.decorators.movie_decorator import MovieDecorator
-from locadora.decorators.employee_decorator import EmployeeDecorator
+from locadora.decorators.client_decorator import ClientDecorator
 
 
 class RentAnalystDecorator(Decorator):
     '''RentAnalyst'''
-    decoration_rules = ['should_have_employee_decorator']
+    decoration_rules = ['should_have_client_decorator']
 
     def __init__(self, register):
         Decorator.__init__(self)
-        self.description = "An employee with rent analysis skills"
+        self.description = "An client with rent analysis skills"
         self.register = register
         self.rent_limit = 0
 
     @operation(category='business')
-    def create_rent_request(self, movie, employee):
+    def create_rent_request(self, movie, client):
         ''' creates a rent request '''
-        rent_request = RentRequest(movie, self, employee)
+        rent_request = RentRequest(movie, self, client)
         #places the rent_request in the node's input area
         self.decorated.input_area[rent_request.movie.name] = rent_request
 

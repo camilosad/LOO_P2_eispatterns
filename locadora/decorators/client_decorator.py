@@ -6,14 +6,14 @@ from eispatterns.domain.supportive.rule import rule
 from eispatterns.domain.supportive.association_error import AssociationError
 
 
-class EmployeeDecorator(Decorator):
-    '''A general purpose Employee decorator'''
+class ClientDecorator(Decorator):
+    '''A general purpose Client decorator'''
     decoration_rules = ['should_be_instance_of_person']
     def __init__(self):
         Decorator.__init__(self)
         self.description = "Supplies the basis for representing employes"
 
     def generate_register(self, register):
-        ''' generates the register number for the employee '''
+        ''' generates the register number for the client '''
         self.register = register
 
