@@ -21,10 +21,10 @@ class LocadoraRuleBase(CoreRules):
         else: return True
 
     @rule('association')
-    def should_be_instance_of_rent_analyst(self, associated):
+    def should_be_instance_of_atendente(self, associated):
         '''Associated object should be instance of Rent Analyst Decorator'''
-        from locadora.decorators.rent_analyst_decorator import RentAnalystDecorator
-        try: associated |should| be_instance_of(RentAnalystDecorator)
+        from locadora.decorators.atendente_decorator import AtendenteDecorator
+        try: associated |should| be_instance_of(AtendenteDecorator)
         except ShouldNotSatisfied: return False
         else: return True
 

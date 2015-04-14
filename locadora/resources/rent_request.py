@@ -14,7 +14,7 @@ class RentRequest(WorkItem):
         if not RuleManager.get_instance().check_rule('should_be_instance_of_movie', movie):
            raise AssociationError('Movie instance expected, instead %s passed' % type(movie))
         self.movie = movie
-        if not RuleManager.get_instance().check_rule('should_be_instance_of_rent_analyst', analyst):
+        if not RuleManager.get_instance().check_rule('should_be_instance_of_atendente', analyst):
             raise AssociationError('Rent Analyst instance expected, instead %s passed' % type(analyst))
         self.analyst = analyst
         if not RuleManager.get_instance().check_rule('should_be_instance_of_client', client):
