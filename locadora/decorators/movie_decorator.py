@@ -16,6 +16,6 @@ class MovieDecorator(Decorator):
         self.restricted = False
 
     @operation(category='business')
-    def register_movie_rent(self):
+    def register_movie_aluguel(self):
         ''' Atualiza status do filme para indisponivel '''
         self.restricted = True
